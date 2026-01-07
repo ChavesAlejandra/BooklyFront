@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="carousel">
+        <!-- Slides -->
+        <div class="carousel__slideActive">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop" alt="Montañas">
+        </div>
+        <div class="carousel__slide">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&h=1080&fit=crop" alt="Playa">
+        </div>
+        <div class="carousel__slide">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&h=1080&fit=crop" alt="Bosque">
+        </div>
+        <div class="carousel__slide">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&h=1080&fit=crop" alt="Lago">
+        </div>
+        <div class="carousel__slide">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop" alt="Naturaleza">
+        </div>
+
+        <!-- Información de la imagen -->
+        <div class="slideInfo">
+            <h2 id="slideInfo__title">Montañas Majestuosas</h2>
+            <p id="slideInfo__description">Explora la belleza natural</p>
+        </div>
+
+        <!-- Controles -->
+        <div class="carouselControls">
+            <button class="carouselControls__prevBtn" id="prevBtn">&#10094;</button>
+            <button class="carouselControls__nextBtn" id="nextBtn">&#10095;</button>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="carouselIndicators">
+            <span class="carouselIndicators__indicatorActive" data-slide="0"></span>
+            <span class="carouselIndicators__indicator" data-slide="1"></span>
+            <span class="carouselIndicators__indicator" data-slide="2"></span>
+            <span class="carouselIndicators__indicator" data-slide="3"></span>
+            <span class="carouselIndicators__indicator" data-slide="4"></span>
+        </div>
+    </div>
+
+    <script src="../js/home.js"></script>
+</body>
+</html>
