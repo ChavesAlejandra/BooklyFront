@@ -1,0 +1,371 @@
+@font-face {
+    font-family: "Distillery Display W00 Regular";
+    src: url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.eot");
+    src: url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78.svg#Distillery Display W00 Regular")format("svg");
+}
+@font-face {
+    font-family: "Tenor Sans";
+    src: url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.eot");
+    src: url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37.svg#Tenor Sans")format("svg");
+}
+body { overflow: hidden; }
+
+img{width: 100%;}
+h1, h2, h3, h4, h5, h6 
+{
+    font-family: "Distillery Display W00 Regular";
+    letter-spacing: 2px; 
+    font-weight: bold;
+}
+p, ul, li, a, span, div, button { font-family: "Tenor Sans"; }
+
+.carousel-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Cada slide ocupa toda la pantalla */
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Contenedor de imagen (50% de la pantalla) */
+.slide-image {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenedor de texto (50% de la pantalla) */
+.slide-text {
+    width: 50%;
+    height: 100%;
+    background: #F0EBE1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+    color: #482C2C;
+}
+
+.slide-text h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.slide-text p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    text-align: center;
+    opacity: 0.95;
+}
+
+/* Botón de inicio de sesión */
+.login-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    background-color: #80471C;
+    color: #F0EBE1;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.459);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(0, 0, 0, 0.3);
+    background-color: #F0EBE1;
+}
+
+/* Modal / Popup */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #7f8c8d8c;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #6A2C2C;
+    color: #F0EBE1;
+    padding: 40px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    box-shadow: -10px 20px 30px #482C2C;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+    color: #F0EBE1;
+    font-size: 32px;
+    text-align: center;
+}
+
+.modal-content-text {
+    margin-bottom: 9px;
+    text-align: center;
+    color: #7F8C8D;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #F0EBE1;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+}
+
+.form-group input {
+    color: #80471C;
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2F4F4F;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #7F8C8D;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #2F4F4F;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #80471C;
+    color: #F0EBE1;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px #F0EBE1;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #7F8C8D;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    color: #2F4F4F;
+}
+
+/* Slides con orden inverso (texto a la izquierda, imagen a la derecha) */
+.carousel-slide.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Controles */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    transform: translateY(-50%);
+    z-index: 100;
+    pointer-events: none;
+}
+
+
+.control-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: all;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Indicadores */
+.carousel-indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 10%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.indicator.active {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.3);
+}
+
+.indicator:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .carousel-slide,
+    .carousel-slide.reverse {
+        flex-direction: column;
+    }
+
+    .slide-image,
+    .slide-text {
+        width: 100%;
+        height: 50%;
+    }
+
+    .slide-text {
+        padding: 40px;
+    }
+
+    .slide-text h1 {
+        font-size: 32px;
+    }
+
+    .slide-text p {
+        font-size: 16px;
+    }
+
+    .control-btn {
+        width: 50px;
+        height: 50px;
+    }
+}

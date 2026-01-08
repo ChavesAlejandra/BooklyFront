@@ -3,22 +3,11 @@ const slides = document.querySelectorAll('.carousel-slide');
 const indicators = document.querySelectorAll('.indicator');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
-const slideTitle = document.getElementById('slide-title');
-const slideDescription = document.getElementById('slide-description');
 
 // Variables de control
 let currentSlide = 0;
-const slideInterval = 4000; // 4 segundos
+const slideInterval = 10000000000000; // 5 segundos
 let autoSlide;
-
-// Información de cada slide
-const slideInfo = [
-    { title: 'Montañas Majestuosas', description: 'Explora la belleza natural' },
-    { title: 'Paraíso Tropical', description: 'Relájate en aguas cristalinas' },
-    { title: 'Bosque Encantado', description: 'Descubre la magia del bosque' },
-    { title: 'Lago Sereno', description: 'Encuentra tu paz interior' },
-    { title: 'Naturaleza Pura', description: 'Conecta con el mundo natural' }
-];
 
 /**
  * Muestra el slide correspondiente al índice
@@ -41,10 +30,6 @@ function showSlide(index) {
     // Actualizar indicadores
     indicators.forEach(indicator => indicator.classList.remove('active'));
     indicators[currentSlide].classList.add('active');
-
-    // Actualizar información
-    slideTitle.textContent = slideInfo[currentSlide].title;
-    slideDescription.textContent = slideInfo[currentSlide].description;
 }
 
 /**
@@ -121,3 +106,61 @@ document.addEventListener('keydown', (e) => {
 
 // Iniciar el carrusel automático al cargar la página
 startAutoSlide();
+
+// Control del modal de inicio de sesión
+const loginButtons = document.querySelectorAll('.login-btn');
+const loginModal = document.getElementById('loginModal');
+const closeModal = document.getElementById('closeModal');
+const loginForm = document.getElementById('loginForm');
+
+// Abrir modal al hacer clic en cualquier botón de inicio de sesión
+loginButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        loginModal.classList.add('active');
+        stopAutoSlide(); // Pausar el carrusel cuando se abre el modal
+    });
+});
+
+// Cerrar modal al hacer clic en la X
+closeModal.addEventListener('click', () => {
+    loginModal.classList.remove('active');
+    startAutoSlide(); // Reanudar el carrusel cuando se cierra el modal
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+loginModal.addEventListener('click', (e) => {
+    if (e.target === loginModal) {
+        loginModal.classList.remove('active');
+        startAutoSlide();
+    }
+});
+
+// Cerrar modal con la tecla ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && loginModal.classList.contains('active')) {
+        loginModal.classList.remove('active');
+        startAutoSlide();
+    }
+});
+
+// Manejar el envío del formulario
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Obtener valores del formulario
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    // Aquí puedes agregar la lógica para procesar el inicio de sesión
+    console.log('Intento de inicio de sesión:', { email, password });
+    
+    // Ejemplo: mostrar mensaje de éxito
+    alert('¡Inicio de sesión exitoso! Email: ' + email);
+    
+    // Cerrar el modal
+    loginModal.classList.remove('active');
+    startAutoSlide();
+    
+    // Limpiar el formulario
+    loginForm.reset();
+});
