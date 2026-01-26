@@ -24,9 +24,19 @@ $fontTextUrl: "https://db.onlinewebfonts.com/t/31703b2501da7c02920ea1c47959ba37"
 $fontTitle: "Distillery Display W00 Regular";
 $fontTitleUrl: "https://db.onlinewebfonts.com/t/abe9e9e44fb3d470e5ecd486b158ce78";
 
-$bodydColor: #3498db;
-$headerFooterColor: #2ecc71;
-$textColor: #2c3e50;
-$buttonColor: #e74c3c;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+$transition-base: 0.3s ease;
+$transition-slow: 1.5s ease-in-out;
+
+$color-primary: #80471C;
+$bodyBackColor: #F0EBE1;
+$color-text-dark: #482C2C;
+$headerFooterBackColor: #6A2C2C;
+$color-gray: #7F8C8D;
+$color-dark-gray: #2F4F4F;
+
+$color-primary: #80471C;
+$color-bg-light: #F0EBE1;
+$color-text-dark: #482C2C;
+$color-modal-bg: #6A2C2C;
+$color-gray: #7F8C8D;
+$color-dark-gray: #2F4F4F;

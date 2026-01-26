@@ -1,0 +1,368 @@
+@use './utilities/_vars.scss' as *;
+
+// Base styles
+body {
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-display;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+p, ul, li, a, span, div, button {
+    font-family: $fontText;
+}
+
+// Carousel Container
+.carouselContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    // Carousel Slide
+    &__slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        opacity: 0;
+        transition: opacity $transition-slow;
+
+        &#active {
+            opacity: 1;
+        }
+
+        &#reverse {
+            flex-direction: row-reverse;
+        }
+    }
+
+    // Carousel Controls
+    &__controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        transform: translateY(-50%);
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    // Carousel Indicators
+    &__indicators {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 100;
+
+        &__indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 10%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all $transition-base;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+
+            &#active {
+                background-color: rgba(255, 255, 255, 1);
+                transform: scale(1.3);
+            }
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.8);
+            }
+        }
+    }
+
+    // Modal Overlay
+    &__modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(127, 140, 141, 0.55);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all $transition-base;
+
+        &#active {
+            opacity: 1;
+            visibility: visible;
+
+            .carouselContainer__modalOverlay__content {
+                transform: scale(1);
+            }
+        }
+
+        // Modal Content
+        &__content {
+            background: $color-modal-bg;
+            color: $color-bg-light;
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform $transition-base;
+            box-shadow: -10px 20px 30px $color-text-dark;
+
+            h2 {
+                color: $color-bg-light;
+                font-size: 32px;
+                text-align: center;
+            }
+
+            &__text {
+                margin-bottom: 9px;
+                text-align: center;
+                color: $color-gray;
+            }
+
+            &__close {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 32px;
+                cursor: pointer;
+                color: #999;
+                transition: color $transition-base;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    color: #333;
+                }
+            }
+
+            &__formGroup {
+                margin-bottom: 20px;
+
+                label {
+                    display: block;
+                    margin-bottom: 8px;
+                    color: $color-bg-light;
+                    font-weight: 600;
+                    font-size: 14px;
+                    text-align: left;
+                }
+
+                input {
+                    color: $color-primary;
+                    width: 100%;
+                    padding: 12px 15px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    transition: border-color $transition-base;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $color-dark-gray;
+                    }
+                }
+            }
+
+            &__formOptions {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+                font-size: 14px;
+
+                &__checkboxLabel {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+
+                    input {
+                        margin-right: 8px;
+                        cursor: pointer;
+                    }
+                }
+
+                &__forgotPassword {
+                    color: $color-gray;
+                    text-decoration: none;
+                    transition: color $transition-base;
+
+                    &:hover {
+                        color: $color-dark-gray;
+                    }
+                }
+            }
+
+            &__submitBtn {
+                width: 100%;
+                padding: 15px;
+                background: $color-primary;
+                color: $color-bg-light;
+                border: none;
+                border-radius: 10px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all $transition-base;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px $color-bg-light;
+                }
+            }
+
+            &__signupLink {
+                text-align: center;
+                margin-top: 20px;
+                color: #666;
+                font-size: 14px;
+
+                a {
+                    color: $color-gray;
+                    text-decoration: none;
+                    font-weight: 600;
+
+                    &:hover {
+                        color: $color-dark-gray;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Control Container
+.controlContainer {
+    &__controls {
+        &__btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            width: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all $transition-base;
+            pointer-events: all;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+// Slide Image
+.slide-image {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Slide Text
+.slide-text {
+    width: 50%;
+    height: 100%;
+    background: $bodyBackColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+    color: $color-text-dark;
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 30px;
+        line-height: 1.2;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+        text-align: center;
+        opacity: 0.95;
+    }
+}
+
+// Login Button
+.login-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    background-color: $color-primary;
+    color: $color-bg-light;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all $transition-base;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.459);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 9px 20px rgba(0, 0, 0, 0.3);
+        background-color: $bodyBackColor;
+    }
+}
+
+// Responsive
+@media (max-width: 968px) {
+    .carouselContainer__slide,
+    .carouselContainer__slide#reverse {
+        flex-direction: column;
+    }
+
+    .slide-image,
+    .slide-text {
+        width: 100%;
+        height: 50%;
+    }
+
+    .slide-text {
+        padding: 40px;
+
+        h1 {
+            font-size: 32px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    .controlContainer__controls__btn {
+        width: 50px;
+        height: 50px;
+    }
+}
